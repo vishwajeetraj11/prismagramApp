@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigation } from "@react-navigation/native";
+import NavIcon from "./NavIcon";
+import { Platform } from "react-native";
 
 const Container = styled.TouchableOpacity``;
 const Text = styled.Text``;
@@ -13,7 +15,9 @@ export default () => {
         navigation.navigate("MessageNavigation");
       }}
     >
-      <Text>Messages</Text>
+    <NavIcon
+      name={Platform.OS === "ios" ? "ios-paper-plane" : "md-paper-plane"}
+    />
     </Container>
   );
 };

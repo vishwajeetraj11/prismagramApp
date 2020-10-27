@@ -13,7 +13,7 @@ const View = styled.View`
 
 
 const Image = styled.Image`
-  width: ${constants.width / 2.5}px;
+  width: ${constants.width / 1.2}px;
   height: ${constants.height / 3}px;
 `;
 
@@ -55,7 +55,7 @@ const LoginLinkText = styled.Text`
 
 export default ({ navigation }) => (
   <View>
-    <Image resizeMode={"contain"} source={require("../../assets/logo.png")} />
+    <Image resizeMode={"contain"} source={require("../../assets/loog-small.png")} />
     <AuthButton
       text={"Create New Account"}
       onPress={() => navigation.navigate("Signup")}

@@ -7,6 +7,7 @@ import TakePhoto from "../screens/Photo/TakePhoto";
 import UploadPhoto from "../screens/Photo/UploadPhoto";
 import { Dimensions } from "react-native";
 import { StatusBar } from "react-native";
+import config from "./config"
 
 const Photo = createMaterialTopTabNavigator();
 
@@ -14,9 +15,15 @@ function PhotoTabs() {
   return (
     <Photo.Navigator
       tabBarPosition="bottom"
-    //   tabBarOptions={{
-    //     style: { marginTop: StatusBar.currentHeight },
-    //   }}
+      // style={{
+      //   backgroundColor: "#fafafa"
+      // }}
+        tabBarOptions={{
+          style: { 
+            // marginTop: StatusBar.currentHeight
+            ...config
+           },
+        }}
     >
       <Photo.Screen name="SelectPhoto" component={SelectPhoto} />
       <Photo.Screen name="TakePhoto" component={TakePhoto} />
@@ -28,7 +35,13 @@ const PhotoNavigation = createStackNavigator();
 
 function MyStack() {
   return (
-    <PhotoNavigation.Navigator>
+    <PhotoNavigation.Navigator
+      screenOptions={{ 
+        headerStyle: { 
+          backgroundColor: "#fafafa"
+         }, 
+      }}
+    >
       <PhotoNavigation.Screen
         name="PhotoTabs"
         component={PhotoTabs}
