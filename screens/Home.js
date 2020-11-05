@@ -5,16 +5,10 @@ import { useQuery } from "react-apollo-hooks";
 import { gql } from "apollo-boost";
 import { ScrollView, RefreshControl } from "react-native";
 import Post from "../components/Post";
+import { POST_FRAGMENT } from "../fragments";
 
-const View = styled.View`
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  background-color: #ffffff;
-`;
-
-const FEED_QUERY = gql`
-  {
+export const FEED_QUERY = gql`
+   {
     seeFeed {
       id
       location
@@ -43,7 +37,7 @@ const FEED_QUERY = gql`
   }
 `;
 
-const Text = styled.Text``;
+
 
 export default () => {
   const [refreshing, setRefresh] = useState(false);
@@ -55,7 +49,7 @@ export default () => {
       setRefresh(true);
       await refetch();
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     } finally {
       setRefresh(false);
     }

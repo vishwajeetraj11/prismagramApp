@@ -9,8 +9,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import MessagesLink from "../components/MessagesLink";
 import NavIcon from "../components/NavIcon";
 import config from "./config";
-import SearchBar from "../components/SearchBar";
-import { useRoute } from "@react-navigation/native";
+import Detail from "../screens/Detail";
+import styles from "../styles";
+import UserDetail from "../screens/UserDetail";
 
 const activeColor = "#4285F4";
 const InactiveColor = "#999999";
@@ -56,6 +57,22 @@ const HomeStack = () => {
           ),
         }}
       />
+      <HomeStackNavigator.Screen
+        name="Detail"
+        component={Detail}
+        options={{
+          headerTintColor: "#393456",
+          headerTitle: "Post",
+        }}
+      />
+      <HomeStackNavigator.Screen
+        name="UserDetail"
+        component={UserDetail}
+        options={({navigation, route}) => ({
+          headerTintColor: "#393456",
+          headerTitle: route.params.username,
+        })}
+      />
     </HomeStackNavigator.Navigator>
   );
 };
@@ -77,6 +94,17 @@ const ProfileStack = () => {
         options={{
           title: "Profile",
           headerTitleAlign: "center",
+        }}
+      />
+      <ProfileStackNavigator.Screen
+        name="Detail"
+        component={Detail}
+        options={{
+          headerTintColor: "#393456",
+          headerTitle: "Post",
+          // headerBackTitleVisible: false,
+          // title: "Search",
+          // headerTitleAlign: "center",
         }}
       />
     </ProfileStackNavigator.Navigator>
@@ -109,10 +137,11 @@ const SearchStackNavigator = createStackNavigator();
 const SearchStack = () => {
   return (
     <SearchStackNavigator.Navigator
-      screenOptions={({ route }) => ({
+      screenOptions={{
         headerStyle: {
           ...config,
         },
+        headerBackTitle: null,
         // header: () => {
         //   // console.log("\n");
         //   // console.log("\n");
@@ -133,7 +162,7 @@ const SearchStack = () => {
         //     />
         //   );
         // },
-      })}
+      }}
     >
       <SearchStackNavigator.Screen
         name="Search"
@@ -141,6 +170,28 @@ const SearchStack = () => {
         options={{
           title: "Search",
           headerTitleAlign: "center",
+        }}
+      />
+      <SearchStackNavigator.Screen
+        name="Detail"
+        component={Detail}
+        options={{
+          headerTintColor: "#393456",
+          headerTitle: "Post",
+          // headerBackTitleVisible: false,
+          // title: "Search",
+          // headerTitleAlign: "center",
+        }}
+      />
+      <SearchStackNavigator.Screen
+        name="UserDetail"
+        component={UserDetail}
+        options={{
+          headerTintColor: "#393456",
+          headerTitle: "Profile",
+          // headerBackTitleVisible: false,
+          // title: "Search",
+          // headerTitleAlign: "center",
         }}
       />
     </SearchStackNavigator.Navigator>

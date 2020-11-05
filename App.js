@@ -16,6 +16,7 @@ import styles from "./styles";
 import NavController from "./components/NavController";
 import { AuthProvider } from "./AuthContext";
 
+// adb reverse tcp:4000 tcp:4000
 import {
   Lato_100Thin,
   Lato_100Thin_Italic,

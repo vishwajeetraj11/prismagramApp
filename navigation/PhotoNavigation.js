@@ -7,7 +7,8 @@ import TakePhoto from "../screens/Photo/TakePhoto";
 import UploadPhoto from "../screens/Photo/UploadPhoto";
 import { Dimensions } from "react-native";
 import { StatusBar } from "react-native";
-import config from "./config"
+import config from "./config";
+import styles from "../styles";
 
 const Photo = createMaterialTopTabNavigator();
 
@@ -18,15 +19,29 @@ function PhotoTabs() {
       // style={{
       //   backgroundColor: "#fafafa"
       // }}
-        tabBarOptions={{
-          style: { 
-            // marginTop: StatusBar.currentHeight
-            ...config
-           },
-        }}
+      tabBarOptions={{
+        style: {
+          // marginTop: StatusBar.currentHeight
+          ...config,
+        },
+        labelStyle: {
+          fontFamily: "Lato_400Regular",
+        },
+        indicatorStyle: {
+          backgroundColor: styles.blackColor,
+        },
+      }}
     >
-      <Photo.Screen name="SelectPhoto" component={SelectPhoto} />
-      <Photo.Screen name="TakePhoto" component={TakePhoto} />
+      <Photo.Screen
+        name="SelectPhoto"
+        options={{ tabBarLabel: "Select" }}
+        component={SelectPhoto}
+      />
+      <Photo.Screen
+        name="TakePhoto"
+        options={{ tabBarLabel: "Take" }}
+        component={TakePhoto}
+      />
     </Photo.Navigator>
   );
 }
@@ -36,22 +51,23 @@ const PhotoNavigation = createStackNavigator();
 function MyStack() {
   return (
     <PhotoNavigation.Navigator
-      screenOptions={{ 
-        headerStyle: { 
-          backgroundColor: "#fafafa"
-         }, 
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#fafafa",
+        },
+        headerTitle: 'Choose a Photo'
       }}
     >
       <PhotoNavigation.Screen
         name="PhotoTabs"
         component={PhotoTabs}
         // Just in case if i later wanted to hide the header
-        // options={{ headerShown: true }}
+        // options={{ headerShown: false }}
       />
       <PhotoNavigation.Screen
         name="UploadPhoto"
         component={UploadPhoto}
-        // options={{ headerShown: true }}
+        options={{ headerShown: true, headerTitle: "Upload", headerBackTitleStyle: {textAlign: "center"} }}
       />
     </PhotoNavigation.Navigator>
   );

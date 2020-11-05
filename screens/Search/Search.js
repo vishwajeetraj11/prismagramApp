@@ -3,12 +3,6 @@ import styled from "styled-components";
 import SearchBar from "../../components/SearchBar"
 import SearchPresenter from "./SearchPresenter"
 
-const View = styled.View`
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  background-color: #ffffff;
-`;
 
 const Text = styled.Text``;
 
@@ -29,7 +23,6 @@ export default ({ navigation, route }) => {
   },[navigation, searchTerm])
 
   const handleSubmit = () => {
-    console.log("Submit: ");
     setFetch(true);
   };
   const handleOnChange = text => {

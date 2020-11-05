@@ -7,13 +7,15 @@ import constants from "../constants";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "../styles";
 import { gql } from "apollo-boost";
-import {useMutation} from "react-apollo-hooks"
+import {useMutation} from "react-apollo-hooks";
+import { useNavigation } from '@react-navigation/native';
 export const TOGGLE_LIKE = gql`
   mutation toggelLike($postId: String!) {
     toggleLike(postId: $postId)
   }
 `;
 const Post = ({id, user, location, files = [], likeCount: likeCountProp, caption, comments, isLiked: isLikedProp, }) => {
+  const navigation = useNavigation();
   const [isLiked, setIsLiked] = useState(isLikedProp);
   const [likeCount, setLikeCount] = useState(likeCountProp);
   const [toggleLikeMutaton] = useMutation(TOGGLE_LIKE, {
@@ -31,22 +33,22 @@ const Post = ({id, user, location, files = [], likeCount: likeCountProp, caption
     setIsLiked(p => !p);
     try {
       const data = await toggleLikeMutaton();
-      console.log(data)
+      // console.log(data)
     } catch (e) {
-      console.log(e)
+      // console.log(e)
     }
   };
 
   return (
     <Container>
       <Header>
-        <Touchable>
+        <Touchable onPress={() => navigation.navigate("UserDetail", {username: user.username})}>
           <Image
             style={{ height: 40, width: 40, borderRadius: 20 }}
             source={{ uri: user.avatar }}
           />
         </Touchable>
-        <Touchable>
+        <Touchable  onPress={() => navigation.navigate("UserDetail", {username: user.username})}>
           <Bold>{user.username}</Bold>
           <Location>{location}</Location>
         </Touchable>
@@ -151,7 +153,7 @@ const Header = styled.View`
 const Touchable = styled.TouchableOpacity``;
 const Bold = styled.Text`
   font-family: "Lato_700Bold";
-  letter-spacing: 0.3px;
+  /* letter-spacing: 0.3px; */
   margin-left: 10px;
 `;
 const Likes = styled(Bold)`
